@@ -12,13 +12,13 @@ def isStringPermutation(s1, s2): #assuming strings are the same length
 
 
 def pairsThatEqualSum(intlist, targ):
+    targset = set(intlist)
     targlist = []
-    
-    for num1 in intlist: #checks all possible sum pairs in nested for loop
-    
-        for num2 in intlist:
-            
-            if num1 + num2 == targ and targlist.count((num1,num2)) == 0: #no duplicates
-                targlist.append((num1, num2))
-                
+    x = 0
+    while len(targset) != 0 and x != len(intlist):
+        if targ - intlist[x] in targset:
+            targlist.append((intlist[x], targ - intlist[x]))
+            targset.remove(intlist[x])
+            targset.remove(targ - intlist[x])
+        x += 1
     return targlist
