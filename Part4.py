@@ -53,20 +53,23 @@ class Queue:
         return item
 
     #returns true if remove is successful, false otherwise.
-    def remove(self, data):
+    def remove(self, index):
         node = self.front
-        self.remove_helper(data, node)
+        count = 0
+        self.remove_helper(index, node, count)
         
-    def remove_helper(self, data, node):
+    def remove_helper(self, index, node, count):
         if self.is_empty():
             return False
-        elif data == node.data:
-            temp = Node("temp", node.next)
-            #need help here, incomplete
+        if self.size() < index:
+            return False
+        elif count == index:
+            
         elif node.next == None:
             return False
         else:
-            self.remove_helper(data, node.next)
+            count += 1
+            self.remove_helper(index, node.next, count)
 
     def search(self, data):
         node = self.front
@@ -84,6 +87,32 @@ class Queue:
             count += 1
             self.search_helper(data, node.next, count)
 
+    def hasCycle(self):
+        self.front = node
+        count = 0
+        self.hasCycle_helper(node, count)
+    
+    def hasCycle_helper(self, node, count):
+        if self.size() == 0:
+            return False
+        if count > self.size():
+            return True
+        elif node.next == None:
+            return False
+        else:
+            count += 1
+            hasCycle_helper(node.next, count)
+            
+    def isPalindrome(self):
+        start = self.front
+        datalist = []
+        while node.next != None:
+            datalist.append(start.data)
+            start = start.next
+        backwardlist = datalist[::-1]
+        
+        return backwardlist == datalist
+    
     
     def size(self):
         return self.num_in_queue
@@ -99,6 +128,20 @@ class testLinked(unittest.TestCase):
         testqueue = Queue(10)
         testqueue.enqueue("test")
         self.assertEqual(testqueue.dequeue(), "test") 
+        
+    def EraseRemovesCorrectNode(self):
+        testqueue = Queue(10)
+        testqueue.enqueue("a")
+        testqueue.enqueue("b")
+        testqueue.enqueue("c")
+        testqueue.remove(1)
+        
+    def EraseDoesNothingIfNoNode(self):
+        testqueue = Queue(10)
+        testqueue.enqueue("a")
+        testqueue.enqueue("b")
+        testqueue.enqueue("c")
+        self.assertEqual(testqueue.remove(5), False)
     
     def ElementatReturnNode(self):
         testqueue = Queue(5)
