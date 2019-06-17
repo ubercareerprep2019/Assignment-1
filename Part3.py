@@ -100,3 +100,5 @@ class TestStack(unittest.TestCase):
 
     
 #Part 3B, could use extra guidance
+class Queue:
+    
