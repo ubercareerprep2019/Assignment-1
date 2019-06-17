@@ -102,3 +102,16 @@ class TestStack(unittest.TestCase):
 #Part 3B, could use extra guidance
 class Queue:
     
+    def __init__(self, capacity):
+        self.instack = Stack(capacity)
+        self.outstack = Stack(capacity)
+    
+    def enqueue(self, data):
+        self.instack.push(data)
+        
+    def dequeue(self, data):
+        while instack.size != 0:
+            value = instack.pop()
+            self.outstack.push(value)
+        return self.outstack.pop()
+    
