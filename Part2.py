@@ -1,12 +1,11 @@
-def isStringPermutation(s1, s2): #assuming strings are the same length
-    count = 0 
+def isStringPermutation(s1, s2):
+    s1set = set(s1)
+    x = 0
+    for char in s2:
+        if char in s1set:
+            x += 1
     
-    for char in s1:
-        
-        if char in s2:
-            count += 1
-
-    return count == len(s1) 
+    return x == len(s2)
     
     
 
